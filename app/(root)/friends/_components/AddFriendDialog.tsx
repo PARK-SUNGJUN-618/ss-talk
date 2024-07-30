@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,6 +19,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { UserPlus } from "lucide-react";
+import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
 
 type Props = {};
 
@@ -50,6 +52,31 @@ const AddFriendDialog = (props: Props) => {
           <p>Add Friend</p>
         </TooltipContent>
       </Tooltip>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Add friend</DialogTitle>
+          <DialogDescription>
+            Send a request to connect with your friends
+          </DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="space-y-8"
+          >
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                </FormItem>
+              )}
+            ></FormField>
+          </form>
+        </Form>
+      </DialogContent>
     </Dialog>
   );
 };
