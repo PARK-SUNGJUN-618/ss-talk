@@ -8,6 +8,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -19,7 +20,15 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { UserPlus } from "lucide-react";
-import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 type Props = {};
 
@@ -37,6 +46,8 @@ const AddFriendDialog = (props: Props) => {
       email: "",
     },
   });
+
+  const handleSubmit = () => {};
 
   return (
     <Dialog>
@@ -71,9 +82,18 @@ const AddFriendDialog = (props: Props) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Email..." {...field} />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
-            ></FormField>
+            />
+            <DialogFooter>
+              <Button disabled={false} type="submit">
+                send
+              </Button>
+            </DialogFooter>
           </form>
         </Form>
       </DialogContent>
