@@ -29,6 +29,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useMutationState } from "@/hooks/useMutationState";
+import { api } from "@/convex/_generated/api";
 
 type Props = {};
 
@@ -40,6 +42,10 @@ const addFriendFormSchema = z.object({
 });
 
 const AddFriendDialog = (props: Props) => {
+  const { mutate: createRequest, pending } = useMutationState(
+    api.request.create
+  );
+
   const form = useForm<z.infer<typeof addFriendFormSchema>>({
     resolver: zodResolver(addFriendFormSchema),
     defaultValues: {
