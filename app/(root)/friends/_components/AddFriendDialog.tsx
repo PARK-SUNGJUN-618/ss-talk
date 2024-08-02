@@ -54,9 +54,11 @@ const AddFriendDialog = (props: Props) => {
   });
 
   const handleSubmit = async (values: z.infer<typeof addFriendFormSchema>) => {
-    await createRequest({ email: values.email }).then(() => {
-      form.reset();
-    });
+    await createRequest({ email: values.email })
+      .then(() => {
+        form.reset();
+      })
+      .catch((error) => {});
   };
 
   return (
