@@ -31,6 +31,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useMutationState } from "@/hooks/useMutationState";
 import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
+import { ConvexError } from "convex/values";
 
 type Props = {};
 
@@ -57,8 +59,15 @@ const AddFriendDialog = (props: Props) => {
     await createRequest({ email: values.email })
       .then(() => {
         form.reset();
+        toast.success("Friend request sent!");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error(
+          error instanceof ConvexError
+            ? error.data
+            : "Unexpected error occurred"
+        );
+      });
   };
 
   return (
