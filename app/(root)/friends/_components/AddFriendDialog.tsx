@@ -34,8 +34,6 @@ import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { ConvexError } from "convex/values";
 
-type Props = {};
-
 const addFriendFormSchema = z.object({
   email: z
     .string()
@@ -43,7 +41,7 @@ const addFriendFormSchema = z.object({
     .email("Please enter a valid email"),
 });
 
-const AddFriendDialog = (props: Props) => {
+const AddFriendDialog = () => {
   const { mutate: createRequest, pending } = useMutationState(
     api.request.create
   );
